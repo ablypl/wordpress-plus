@@ -1,5 +1,5 @@
 {
-    "name": "laravel-plus/wordpress",
+    "name": "ablypl/wordpress",
     "description": "Wordpress meets Laravel 5.",
     "keywords": ["framework", "laravel", "lumen", "wordpress"],
     "license": "MIT",
