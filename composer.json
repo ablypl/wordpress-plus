@@ -11,7 +11,10 @@
         "league/flysystem": "^1.0",
         "jumilla/laravel-versionia": "^1.0",
         "barryvdh/laravel-debugbar": "^2.0",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "predis/predis": "^1.1",
+        "illuminate/redis": "5.*",
+        "jgrossi/corcel": "^1.4"        
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "^1.8",

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use App\Services\ContentClassLoader;
 use App\Services\BladeExpander;
@@ -15,6 +16,7 @@ class WordPressServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Carbon::setLocale('pl');
         ContentClassLoader::register();
     }
 
@@ -63,6 +65,22 @@ class WordPressServiceProvider extends ServiceProvider
             $expression = substr($expression, 1, strlen($expression) - 2);
 
             return "<?php echo do_shortcode('{$expression}'); ?>";
+        });
+
+        $compiler->directive('html', function ($expression) {
+            $expression = substr($expression, 1, strlen($expression) - 2);
+
+            return "<?php echo wpautop(do_shortcode(html_entity_decode({$expression}))); ?>";
+        });
+
+        $compiler->directive('cache', function ($expression) {
+            $expression = substr($expression, 1, strlen($expression) - 2);
+            
+            return "<?php if(! app('App\\Cache\\BladeDirective')->setup({$expression})) : ?>";
+        });
+
+        $compiler->directive('endcache', function () {
+            return "<?php endif; echo app('App\\Cache\\BladeDirective')->flush(); ?>";
         });
 
         $postloop_counter = 0;
