@@ -1,0 +1,165 @@
+=arrow($color)
+    border: 1px solid $color
+    border-right: 0
+    border-top: 0
+    content: " "
+    display: block
+    height: 7px
+    pointer-events: none
+    position: absolute
+    transform: rotate(-45deg)
+    width: 7px
+
+=clearfix
+    &:after
+        clear: both
+        content: " "
+        display: table
+
+=center($size)
+    left: 50%
+    margin-left: -($size / 2)
+    margin-top: -($size / 2)
+    position: absolute
+    top: 50%
+
+=triangle($size, $color, $direction: "down")
+    width: 0;
+    height: 0;
+    border-style: solid;
+
+    @if $direction == "down"
+        border-color: $color transparent transparent transparent;
+        border-width: #{$size} #{$size} 0 #{$size};
+
+    @if $direction == "top"
+        border-color: transparent transparent $color transparent;
+        border-width: #{$size} #{$size} 0 #{$size};
+
+    @if $direction == "right"
+        border-color: transparent transparent transparent $color;
+        border-width: #{$size} 0 #{$size} #{$size};
+
+    @if $direction == "left"
+        border-color: $color transparent transparent transparent;
+        border-width: #{$size} 0 #{$size} #{$size};
+
+=position-vertical-center
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+
+=fa($size, $dimensions)
+    display: inline-block
+    font-size: $size
+    height: $dimensions
+    line-height: $dimensions
+    text-align: center
+    vertical-align: top
+    width: $dimensions
+
+=overlay($offset: 0)
+    bottom: $offset
+    left: $offset
+    position: absolute
+    right: $offset
+    top: $offset
+
+=placeholder
+    $placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input'
+    @each $placeholder in $placeholders
+        &:#{$placeholder}-placeholder
+            @content
+
+=size($width, $height)
+    height: $height
+    width: $width
+
+=keyframes($name)
+    @-webkit-keyframes #{$name}
+        @content
+    @-moz-keyframes #{$name}
+        @content
+    @-ms-keyframes #{$name}
+        @content
+    @keyframes #{$name}
+        @content
+
+=replace($background, $width, $height)
+    background-color: $background
+    background-position: center center
+    background-repeat: no-repeat
+    background-size: $width $height
+    display: block
+    height: $height
+    outline: none
+    overflow: hidden
+    text-indent: -290486px
+    width: $width
+
+=from($device)
+    @media screen and (min-width: $device)
+        @content
+
+=until($device)
+    @media screen and (max-width: $device - 1px)
+        @content
+
+=mobile
+    @media screen and (max-width: $tablet - 1px)
+        @content
+
+=tablet
+    @media screen and (min-width: $tablet)
+        @content
+
+=tablet-only
+    @media screen and (min-width: $tablet) and (max-width: $desktop - 1px)
+        @content
+
+=touch
+    @media screen and (max-width: $desktop - 1px)
+        @content
+
+=desktop
+    @media screen and (min-width: $desktop)
+        @content
+
+=desktop-only
+    @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px)
+        @content
+
+=widescreen
+    @media screen and (min-width: $widescreen)
+        @content
+
+=hdscreen
+    @media screen and (min-width: $hdscreen)
+        @content
+
+
+@mixin linearGradient($top, $bottom)
+    background: $top
+    background: -moz-linear-gradient(top,  $top 0%, $bottom 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom))
+    background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%)
+    background: -o-linear-gradient(top,  $top 0%,$bottom 100%)
+    background: -ms-linear-gradient(top,  $top 0%,$bottom 100%)
+    background: linear-gradient(to bottom,  $top 0%,$bottom 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 )
+
+=pseudo
+    content: ""
+    display: block
+
+=rectangular-triangle($size, $color)
+    +size($size, $size)
+    border-style: solid
+    border-width: 0 $size $size 0
+    border-color: transparent $color transparent transparent
+
+=rectangular-triangle-left($size, $color)
+    +size($size, $size)
+    border-style: solid
+    border-width: $size $size 0 0
+    border-color: $color transparent transparent

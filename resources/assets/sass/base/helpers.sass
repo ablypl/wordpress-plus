@@ -1,0 +1,140 @@
+// Display
+
+$displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex'
+
+@each $display in $displays
+    .is-#{$display}
+        display: #{$display}
+    .is-#{$display}-mobile
+        +mobile
+            display: #{$display} !important
+    .is-#{$display}-tablet
+        +tablet
+            display: #{$display} !important
+    .is-#{$display}-tablet-only
+        +tablet-only
+            display: #{$display} !important
+    .is-#{$display}-touch
+        +touch
+            display: #{$display} !important
+    .is-#{$display}-desktop
+        +desktop
+            display: #{$display} !important
+    .is-#{$display}-desktop-only
+        +desktop-only
+            display: #{$display} !important
+    .is-#{$display}-widescreen
+        +widescreen
+            display: #{$display} !important
+
+.p-50
+    padding: 50px
+
+.p-b-50
+    padding-bottom: 50px
+.m-b-50
+    margin-bottom: 50px
+
+@each $name, $pair in $colors
+    $color: nth($pair, 1)
+    .is-#{$name}
+        color: $color
+
+@each $size in $sizes
+    $i: index($sizes, $size)
+    .is-#{$i}
+        font-size: $size
+// Float
+.is-clearfix
+    +clearfix
+
+.is-pulled-left
+    float: left
+
+.is-pulled-right
+    float: right
+
+// Overflow
+
+.is-clipped
+    overflow: hidden !important
+
+// Overlay
+
+.is-overlay
+    +overlay
+
+// Text
+
+.has-text-centered
+    text-align: center
+
+.has-text-left
+    text-align: left
+
+.has-text-right
+    text-align: right
+
+// Visibility
+
+.is-hidden
+    display: none !important
+
+.is-hidden-mobile
+    +mobile
+        display: none !important
+
+.is-hidden-tablet
+    +tablet
+        display: none !important
+
+.is-hidden-tablet-only
+    +tablet-only
+        display: none !important
+
+.is-hidden-touch
+    +touch
+        display: none !important
+
+.is-hidden-desktop
+    +desktop
+        display: none !important
+
+.is-hidden-desktop-only
+    +desktop-only
+        display: none !important
+
+.is-hidden-widescreen
+    +widescreen
+        display: none !important
+
+[v-cloak]
+    display: none
+
+// Other
+.is-disabled
+    pointer-events: none
+
+.is-marginless
+    margin: 0 !important
+
+.is-relative
+    position: relative
+
+.is-flex
+    display: flex
+
+.is-full-width
+    width: 100%
+
+.is-flex-center
+    display: flex
+    align-items: center
+    justify-content: center
+
+.is-flex-space-between
+    display: flex
+    justify-content: space-between
+
+.is-right
+    margin-left: auto
